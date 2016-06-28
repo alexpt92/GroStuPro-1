@@ -1,0 +1,11 @@
+Haben:
+	-globalMap(alle Terms in einer Map (Term, Counter)
+	
+	-localMap(pro Stream, jeder Term, wobei der Term zum globalen Term gelinkt ist, um sein Gewicht zu bestimmen)
+	
+	-authors(pro Autor alle CoAutoren und Streams mit Anzahl der Beiträge)
+	
+Brauchen:
+	-Evaluierung, die die Listen der Terme vergleicht und Ähnlichkeiten zwischen Streams festellt.(durch LM und GM findet man die relevanten Terme für einen Stream) und in einen Graphen schreibt.
+	
+	-Behandlung der Autoren, wie Terme.

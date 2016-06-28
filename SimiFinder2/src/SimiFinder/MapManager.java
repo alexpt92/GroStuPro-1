@@ -61,7 +61,7 @@ public class MapManager {
 					ps.println("<stream key=\"" + this.streamMap.get(sName).type + sName + "\">");
 					for (StreamWithCounter s : this.streamMap.get(sName).commonStreams) {
 						ps.println("<entry name=\"" +s.stream.type + s.stream.name + "\" ratio=\""
-								+ s.counter.getVal() + "\" />");
+								+ s.counter.getDVal() + "\" />");
 					}
 					ps.println("</stream>");
 				}
@@ -86,10 +86,12 @@ public class MapManager {
 
 			if (isCoAuthor) {
 				authorMap.get(mainAuthorName).coAuthors.add(authorMap.get(str));
+				//streamMap.get(stream).addCoAuthor(authorMap.get(str));
+				
 			} else {
 
 				streamMap.get(stream).addAuthor(authorMap.get(str));
-
+				
 			}
 
 		} else {
@@ -97,6 +99,7 @@ public class MapManager {
 			authorMap.get(str).addStream(streamMap.get(stream), isCoAuthor);
 			if (isCoAuthor) {
 				authorMap.get(mainAuthorName).coAuthors.add(authorMap.get(str));
+				//streamMap.get(stream).addCoAuthor(authorMap.get(str));
 			}
 
 			else {
@@ -258,14 +261,11 @@ class Counter {
 
 	Counter() {
 		this.val = 1;
-		this.dVal = 1.0;
+		this.dVal = 0.0;
 	}
 
 	public void inc() {
 		this.val++;
-		
-	}
-	public void incD(){
 		this.dVal += 1.0;
 	}
 
@@ -286,5 +286,9 @@ class Counter {
 
 	public void addDVal(double d) {
 		this.dVal += d;
+	}
+	public void copy(Counter c){
+		this.val = c.getVal();
+		this.dVal = c.getDVal();
 	}
 }
